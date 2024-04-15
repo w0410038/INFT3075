@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Audio Analysis</title>
+</head>
+
+<body>
+    <div class="container">
+        <main class="d-flex justify-content-center main">
+            <div>
+                <h1>Audio Analysis</h1>
+            </div>
+
+
+        </main>
+
+
+
+
+        <!-- First Line: Audio Converter Sections -->
+        <div class="audio-converter-sections">
+            <div class="container">
+                <!-- Text to Audio Conversion Form -->
+                <div>
+                    <form action="/convert" method="post">
+                        <input type="text" name="text" placeholder="Enter text to convert to audio" />
+                        <input type="submit" value="Convert Text to Audio" />
+                    </form>
+                    {% if converted %}
+                    <h2>Audio Converted! Ready for Analysis</h2>
+                    <form action="/analyze" method="post">
+                        <input type="hidden" name="audio_path" value="{{ audio_path }}" />
+                        <input type="submit" value="Analyze Converted Audio" />
+                    </form>
+                    {% endif %}
+                </div>
+                <!-- VitsModel Conversion Form -->
+                <div>
+                    <form action="/convert_vits" method="post">
+                        <input type="text" name="text" placeholder="Enter text to convert to audio with VitsModel" />
+                        <input type="submit" value="Convert Text to Audio with VitsModel" />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Line: File Upload Section -->
+        <div class="file-upload-section">
+            <form action="/" method="post" enctype="multipart/form-data">
+                <input type="file" name="audio1" />
+                <input type="file" name="audio2" />
+                <input type="submit" value="Upload Audio Files for Analysis" />
+            </form>
+        </div>
+
+        {% if uploaded %}
+        <div class="results-section">
+            <div class="container">
+                <div>
+                    <h2>Analysis Results for Audio 1</h2>
+                    <ul>
+                        {% for result in analysis1 %}
+                        <li>{{ result }}</li>
+                        {% endfor %}
+                    </ul>
+                    <h2>Analysis Results for Audio 2</h2>
+                    <ul>
+                        {% for result in analysis2 %}
+                        <li>{{ result }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="explanations">
+                    <h3>Parameter Explanations</h3>
+                    <p>
+                        <strong>Tempo:</strong> Measured in beats per minute (BPM), tempo
+                        indicates the speed at which a piece of music is played. A higher BPM
+                        means a faster pace, often associated with energetic or upbeat music,
+                        while a lower BPM indicates a slower pace, which might be found in
+                        calm or solemn music.
+                    </p>
+                    <p>
+                        <strong>Sound:</strong> This generally refers to the brightness or
+                        darkness of the audio, which is closely related to the spectral
+                        centroid.
+                    </p>
+                    <p>
+                        <strong>Bright:</strong> A higher spectral centroid value suggests the
+                        presence of higher frequencies, often perceived as "brighter" or
+                        "sharper" sounds.
+                    </p>
+                    <p>
+                        <strong>Dark:</strong> A lower spectral centroid value indicates more
+                        lower frequencies, which can give the audio a "darker" or "warmer"
+                        quality.
+                    </p>
+                    <p>
+                        <strong>Predominant Pitch Class (Harmony):</strong> This is derived
+                        from chroma features and indicates the most dominant note or pitch
+                        class (like C, D, E, etc.) in the audio. It gives an idea of the key
+                        or tonal center of the piece.
+                    </p>
+                    <p>
+                        <strong>Band with Highest Spectral Contrast:</strong> Spectral
+                        contrast measures the difference in amplitude between peaks and
+                        valleys in the spectrum. The band with the highest contrast can
+                        indicate the frequency range with the most pronounced differences,
+                        potentially pointing to the most "active" or "vibrant" part of the
+                        audio spectrum.
+                    </p>
+                    <p>
+                        <strong>Tonal Centroids (Tonnetz):</strong> This parameter relates to
+                        the harmonic content and can describe the tonal characteristics of the
+                        audio. It's a complex feature that provides insights into the harmonic
+                        relationships within the audio, such as consonance, dissonance, key
+                        clarity, and harmonic changes.
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+</body>
+
+</html>

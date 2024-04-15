@@ -1,0 +1,19 @@
+
+# @app.route('/', methods=['GET', 'POST'])
+# def upload_audio():
+#     if request.method == 'POST':
+#         if 'audio' not in request.files:
+#             return redirect(request.url)
+#         audio_file = request.files['audio']
+#         if audio_file:
+#             # Save the file temporarily or process directly from memory
+#             audio_path = "./temp_audio.wav"
+#             audio_file.save(audio_path)
+            
+#             # Use your analysis functions here
+#             text = convert_audio_to_text(audio_path)
+#             features = extract_audio_features(audio_path)
+#             analysis_result = analyze_features(features)
+#             return render_template('index.html', text=text, analysis=analysis_result, uploaded=True)
+    
+#     return redirect('/')

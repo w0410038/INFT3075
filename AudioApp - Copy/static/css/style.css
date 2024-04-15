@@ -1,0 +1,133 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: grid;
+   
+    /* 중앙 컨텐츠에 더 많은 공간을 할당 */
+    gap: 20px;
+    /* 컬럼 사이 간격 */
+}
+.container {
+background: rgba(141, 214, 251, 0.7);
+    /* More opaque for better readability */
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 50px;
+}
+.audio-converter-sections,
+.file-upload-section,
+.results-section {
+    grid-column: 2 / 2;
+    /* 각 섹션을 전체 너비로 확장 */
+}
+h1 {
+    font-family: 'Chelsea Market', cursive;
+    color: #4A90E2;
+    /* Soft blue */
+    text-align: center;
+    padding: 30px 0;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #D35400;
+    /* Pumpkin color */
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: calc(100% - 22px);
+    /* 너비 조정을 통해 내부 패딩 고려 */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* 너비 계산시 패딩과 테두리 포함 */
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    /* 버튼 너비를 입력 필드와 동일하게 조정 */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #007bff;
+}
+
+
+
+.explanations {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.explanations h3 {
+    margin-top: 0;
+}
+.parameter-explanations {
+    flex: 1;
+    min-width: 300px;
+    max-width: 50%;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.parameter-explanations h3 {
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.parameter-explanations p {
+    margin-bottom: 10px;
+    /* Provides consistent spacing between paragraphs */
+    line-height: 1.6;
+    /* Improves readability */
+    text-align: justify;
+    /* Justifies the text for a cleaner look */
+}
+
+.parameter-explanations strong {
+    color: #0056b3;
+    /* Adds a hint of color to key terms */
+}
